@@ -34,6 +34,20 @@ public class Reader {
         return null;
     }
 
+    static public ArrayList<Long> readLinesToLongArray(String filepath){
+        ArrayList<Long> arr = new ArrayList<>();
+        try {
+            BufferedReader br = Files.newBufferedReader(Paths.get("data/" + filepath));
+            while (br.ready()){
+                arr.add(Long.parseLong((br.readLine())));
+            }
+            return arr;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
 
 }
