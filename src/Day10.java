@@ -21,17 +21,15 @@ public class Day10 {
         System.out.println("Task B: " + getNumberOfPaths(newData));
     }
     private void countJolts(long num){
-        data.stream().sorted().filter(n -> (n > num)).peek(n -> {
-            if (n > num) diff.set((int)(n-num)-1, diff.get((int)(n-num)-1)+1);
-            else diff.set(2, diff.get(2)+1);
-        }).findFirst();
+        data.stream().sorted().filter(n -> (n > num))
+                .peek(n -> diff.set((int)(n-num)-1, diff.get((int)(n-num)-1)+1))
+                .findFirst();
     }
     private long getNumberOfPaths(List<Long> data){
         values.put(data.get(0), 1L);
-        data.subList(1, data.size()).forEach(num -> {
-            values.put(num,countValidJolts(num).stream()
-                    .map(n -> values.get(n))
-                    .reduce(0L, Long::sum)); });
+        data.subList(1, data.size()).forEach(num -> values.put(num,countValidJolts(num).stream()
+                .map(n -> values.get(n))
+                .reduce(0L, Long::sum)));
         return values.get(data.get(data.size()-1));
     }
     private List<Long> countValidJolts(long num){
