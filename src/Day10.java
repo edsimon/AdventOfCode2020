@@ -28,14 +28,10 @@ public class Day10 {
     }
     private long getNumberOfPaths(List<Long> data){
         values.put(data.get(0), 1L);
-        for (Long num : data.subList(1, data.size())) {
-            long numOfWays = 0;
-            List<Long> p = countValidJolts(num);
-            for (Long paths : p) {
-                numOfWays += values.get(paths);
-            }
-            values.put(num, numOfWays);
-        }
+        data.subList(1, data.size()).forEach(num -> {
+            values.put(num,countValidJolts(num).stream()
+                    .map(n -> values.get(n))
+                    .reduce(0L, Long::sum)); });
         return values.get(data.get(data.size()-1));
     }
     private List<Long> countValidJolts(long num){
