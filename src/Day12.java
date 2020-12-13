@@ -29,12 +29,12 @@ public class Day12 {
             String action = Parser.parseStringFirstWord(command);
             int value = Parser.parseStringFirstInt(command);
 
-            BiConsumer<Integer, Integer> takeAction = (a,b) -> {
-                if(isPart2) waypoint[a] += b*value;
-                else cord[a] += b*value; };
-            Consumer<Integer> changeAngle = a -> {
-                angle += a*value;
-                if(isPart2) rotateRelative(a*Math.toRadians(value)); };
+            BiConsumer<Integer, Integer> takeAction = (index,operator) -> {
+                if(isPart2) waypoint[index] += operator*value;
+                else cord[index] += operator*value; };
+            Consumer<Integer> changeAngle = operator -> {
+                angle += operator*value;
+                if(isPart2) rotateRelative(operator*Math.toRadians(value)); };
 
             if(action.equals("N")) takeAction.accept(1,1);
             if(action.equals("E")) takeAction.accept(0,1);

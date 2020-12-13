@@ -1,6 +1,7 @@
 package Helpers;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -9,6 +10,13 @@ public class Parser {
         ArrayList<String> arr = new ArrayList<>();
         Matcher matcher = Pattern.compile(pattern).matcher(searchString);
         while (matcher.find()) arr.add(matcher.group());
+        return arr;
+    }
+    public static List<Integer> parseIntegers(String searchString){
+        String pattern = "\\d+";
+        List<Integer> arr = new ArrayList<>();
+        Matcher matcher = Pattern.compile(pattern).matcher(searchString);
+        while (matcher.find()) arr.add(Integer.parseInt(matcher.group()));
         return arr;
     }
     public static String parseStringFirstWordWithPattern(String pattern, String searchString){
