@@ -6,18 +6,18 @@ import java.util.*;
 public class Day14 {
     public static void main(String[] args) { new Day14().run(); }
     ArrayList<String> data = Reader.readLinesToStringArray("day14.txt");
-    Map<Long,Long> memmory;
+    Map<Long,Long> memory;
 
     private void run() {
-        updateMemmory(false);
-        System.out.println("Task A: " + memmory.values().stream().mapToLong(Long::longValue).sum());
+        updateMemory(false);
+        System.out.println("Task A: " + memory.values().stream().mapToLong(Long::longValue).sum());
 
-        updateMemmory(true);
-        System.out.println("Task B: " + memmory.values().stream().mapToLong(Long::longValue).sum());
+        updateMemory(true);
+        System.out.println("Task B: " + memory.values().stream().mapToLong(Long::longValue).sum());
     }
 
-    private void updateMemmory(boolean isV2) {
-        memmory = new HashMap<>();
+    private void updateMemory(boolean isV2) {
+        memory = new HashMap<>();
         String mask = "";
         for (String row : data) {
             String firstWord = Parser.parseStringFirstWord(row);
@@ -53,10 +53,10 @@ public class Day14 {
             List<String> b = new ArrayList<>();
             b.add(sb.toString());
             List<String> tmp = createAllAddresses(b);
-            for (String s : tmp) memmory.put(Long.parseLong(s, 2), value);
+            for (String s : tmp) memory.put(Long.parseLong(s, 2), value);
         }
         else {
-            memmory.put(key, Long.parseLong(sb.toString(),2));
+            memory.put(key, Long.parseLong(sb.toString(),2));
         }
     }
 
