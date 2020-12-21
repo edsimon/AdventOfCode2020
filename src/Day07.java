@@ -78,16 +78,15 @@ public class Day07 {
             map.put(key, lst);
         }
     }
-}
+    static class Bag {
 
-class Bag {
+        int amount;
+        String name;
 
-    int amount;
-    String name;
-
-    public Bag(int amount, String name) {
-        this.amount = amount;
-        this.name = name;
+        public Bag(int amount, String name) {
+            this.amount = amount;
+            this.name = name;
+        }
     }
-
 }
+
