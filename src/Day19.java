@@ -33,7 +33,6 @@ public class Day19 {
 
     private String getRegex() {
         String regex = rules.get(0);
-        System.out.println(regex);
         while (!regex.matches("^[a-z \"\\|()]+$")) {
             regex = getRegular(regex, "\\d+");
         }
